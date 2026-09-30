@@ -9,10 +9,10 @@ In the **MSYS2 MINGW64** shell (Wox's build requires it):
 ```bash
 git clone --recurse-submodules https://github.com/KOBeerose/wintools.git
 cd wintools
-./scripts/install-all.sh
+bash scripts/install-all.sh
 ```
 
-Settings backups go to the private [app-settings](https://github.com/KOBeerose/app-settings) repo. Clone it next to `wintools`, then `./scripts/backup-settings.sh` / `./scripts/restore-settings.sh`.
+Settings backups go to the private [app-settings](https://github.com/KOBeerose/app-settings) repo. Clone it next to `wintools`, then `bash scripts/backup-settings.sh` / `bash scripts/restore-settings.sh`.
 
 ## Tools
 
