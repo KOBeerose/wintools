@@ -56,6 +56,20 @@ for tool in "${TOOLS[@]}"; do
   echo
 done
 
+# Wox fetches website icons from Google; list domains it must never send (per
+# machine, not in any repo; backed up by backup-settings.sh). Asked once.
+WOX_PRIVATE="$(cygpath -u "$USERPROFILE")/.wox/wox-user/settings/private-domains.txt"
+if [[ ! -f "$WOX_PRIVATE" && -t 0 ]]; then
+  echo "Wox: domains whose website icons must stay private, comma-separated."
+  echo "  e.g. 'lyft, !lyft.com' (the ! entry is an exception for the public site). Empty = none."
+  read -r -p "> " answer
+  if [[ -n "$answer" ]]; then
+    mkdir -p "$(dirname "$WOX_PRIVATE")"
+    tr ',' '\n' <<<"$answer" | sed 's/^ *//; s/ *$//' | grep -v '^$' > "$WOX_PRIVATE"
+    echo "  saved to $(cygpath -w "$WOX_PRIVATE")"
+  fi
+fi
+
 echo "Done: $(( ${#TOOLS[@]} - ${#FAILED[@]} ))/${#TOOLS[@]} tools installed"
 if [[ ${#FAILED[@]} -gt 0 ]]; then
   printf '  - %s\n' "${FAILED[@]}"
