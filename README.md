@@ -1,0 +1,28 @@
+# wintools
+
+Windows tools, built from reviewed source. Companion to [mactools](https://github.com/KOBeerose/mactools): same pattern, same forks where a tool is cross-platform.
+
+## Installation
+
+In the **MSYS2 MINGW64** shell (Wox's build requires it):
+
+```bash
+git clone --recurse-submodules https://github.com/KOBeerose/wintools.git
+cd wintools
+./scripts/install-all.sh
+```
+
+Settings backups go to the private [app-settings](https://github.com/KOBeerose/app-settings) repo. Clone it next to `wintools`, then `./scripts/backup-settings.sh` / `./scripts/restore-settings.sh`.
+
+## Tools
+
+| Tool | Purpose | Status | Build / Install | Permissions |
+| --- | --- | --- | --- | --- |
+| `wox` | Fork of [Wox-launcher/Wox](https://github.com/Wox-launcher/Wox). Launcher: apps, calculator with currency and units, window halves, clipboard, AI. Local changes (see `wox/FORK.md`): no telemetry, no auto-update, no background fetches, plugin hosts bound to localhost, locked Python host build. | Active | `cd wox && bash scripts/build-install-local.sh` | None (unsigned: Smart App Control / AV may ask) |
+
+## Keeping forks safe
+
+- `scripts/audit-upstream.sh <submodule>` prints what upstream's latest release would bring in (dependencies, permissions, build scripts, updater, network code, agent/CI files) without merging. Sync to release tags.
+- `install-all.sh` enables a pre-push hook that refuses to push while a submodule points at a commit its fork doesn't have.
+- Each fork's `FORK.md` lists its changes; re-check them after every sync.
+- The shared tooling (`audit-upstream.sh`, `.githooks/`, `.cursor/skills/`) is copied from mactools. Keep the two in step when you change either.
