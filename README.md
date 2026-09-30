@@ -19,6 +19,7 @@ Settings backups go to the private [app-settings](https://github.com/KOBeerose/a
 | Tool | Purpose | Status | Build / Install | Permissions |
 | --- | --- | --- | --- | --- |
 | `wox` | Fork of [Wox-launcher/Wox](https://github.com/Wox-launcher/Wox). Launcher: apps, calculator with currency and units, window halves, clipboard, AI. Local changes (see `wox/FORK.md`): no telemetry, no auto-update, no background fetches, plugin hosts bound to localhost, locked Python host build. | Active | `cd wox && bash scripts/build-install-local.sh` | None (unsigned: Smart App Control / AV may ask) |
+| `kanata` | Fork of [jtroo/kanata](https://github.com/jtroo/kanata), on release tags. Keyboard layers matching mactools' BetterModifiers: Caps hold = Ctrl, Tab hold = navigation layer (window halves, clipboard, emoji, screenshot, launcher). Layout in `config/kanata.kbd`. Built with `gui` only (no TCP server, no command running, no driver). | Active | `cd kanata && bash scripts/build-install-local.sh`, then `bash scripts/setup-kanata.sh` | None (low-level keyboard hook, no admin) |
 
 ## Keeping forks safe
 

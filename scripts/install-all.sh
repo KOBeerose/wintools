@@ -9,11 +9,13 @@ BUILD_SCRIPT="scripts/build-install-local.sh"
 
 TOOLS=(
   wox
+  kanata
 )
 
 # "folder=url" pairs, not `declare -A`: stays compatible with older bash.
 UPSTREAM_REMOTES=(
   "wox=https://github.com/Wox-launcher/Wox.git"
+  "kanata=https://github.com/jtroo/kanata.git"
 )
 
 case "$(uname -s)" in
@@ -68,6 +70,10 @@ if [[ ! -f "$WOX_PRIVATE" && -t 0 ]]; then
     tr ',' '\n' <<<"$answer" | sed 's/^ *//; s/ *$//' | grep -v '^$' > "$WOX_PRIVATE"
     echo "  saved to $(cygpath -w "$WOX_PRIVATE")"
   fi
+fi
+
+if [[ ! " ${FAILED[*]} " =~ " kanata " ]]; then
+  bash "$REPO_ROOT/scripts/setup-kanata.sh" || FAILED+=("kanata setup")
 fi
 
 echo "Done: $(( ${#TOOLS[@]} - ${#FAILED[@]} ))/${#TOOLS[@]} tools installed"

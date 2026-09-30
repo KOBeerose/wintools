@@ -16,6 +16,7 @@ Verify with `git remote -v` inside the submodule directory.
 | Folder     | Fork (origin)                           | Upstream                            |
 |------------|------------------------------------------|--------------------------------------|
 | `wox`      | `https://github.com/KobeTools/Wox`      | `https://github.com/Wox-launcher/Wox` (default branch `master`) |
+| `kanata`   | `https://github.com/KobeTools/kanata`   | `https://github.com/jtroo/kanata` (sync to release tags) |
 
 ## Cloning wintools fresh
 

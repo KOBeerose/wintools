@@ -1,0 +1,52 @@
+;; wintools keyboard layout for kanata. Mirrors the Mac setup in mactools
+;; (BetterModifiers), so the same keys do the same things on both machines:
+;;
+;;   Caps  tap = Caps Lock, hold = Ctrl   (Mac: Caps = ⌘)
+;;   Tab   tap = Tab,       hold = the nav layer below
+;;
+;;   Tab + Q            screenshot an area                (Win+Shift+S; Mac ⇧⌘4)
+;;   Tab + E            emoji                             (Win+.; Tab+. works too)
+;;   Tab + A / D        left / right half                 (Win+←/→)
+;;   Tab + W / S        top / bottom half                 (Wox window manager: Ctrl+Alt+Shift+W/S)
+;;   Tab + F            maximize                          (Win+↑)
+;;   Tab + X            minimize                          (Win+↓)
+;;   Tab + V            clipboard history                 (Win+V)
+;;   Tab + .            emoji                             (Win+.)
+;;   Tab + Space        launcher (Wox)                    (Ctrl+Space; Caps+Space works too)
+;;   Tab + 1-9          reserved: Windows has no "go to desktop N" shortcut
+;;                      (desktops: numbers on Mac, mouse gestures on both)
+;;
+;; Validate after editing: kanata --check --cfg config/kanata.kbd
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps tab
+  q w e
+  a s d f
+  x v . spc
+  1 2 3 4 5 6 7 8 9
+)
+
+(defalias
+  cap (tap-hold-press 200 200 caps lctl)
+  nav (tap-hold-release 200 200 tab (layer-while-held nav))
+)
+
+(deflayer base
+  @cap @nav
+  q w e
+  a s d f
+  x v . spc
+  1 2 3 4 5 6 7 8 9
+)
+
+(deflayer nav
+  _ _
+  M-S-s     C-A-S-w  M-.
+  M-left    C-A-S-s  M-rght  M-up
+  M-down    M-v      M-.     C-spc
+  XX XX XX XX XX XX XX XX XX
+)

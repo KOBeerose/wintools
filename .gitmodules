@@ -2,3 +2,7 @@
 	path = wox
 	url = https://github.com/KobeTools/Wox.git
 	branch = master
+[submodule "kanata"]
+	path = kanata
+	url = https://github.com/KobeTools/kanata.git
+	branch = main
